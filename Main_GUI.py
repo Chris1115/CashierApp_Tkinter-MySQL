@@ -82,6 +82,8 @@ class GUI(backend.backend):
             self.action(f"INSERT INTO product VALUES ({id[i][0]}, '{name[i][0]}', {stock[i][0]}, {price[i][0]})")
         
         self.refresh_data()
+        
+        return True
 
 
     # Delete function for delete button command
@@ -94,6 +96,7 @@ class GUI(backend.backend):
         # Declare delete_GUI object to show the GUI
         delete_GUI.GUI(val)
         
+        return True
 
 
 
@@ -103,6 +106,7 @@ class GUI(backend.backend):
         # Declare insert_GUI object to show the GUI
         insert = insert_GUI.GUI()
 
+        print('Add GUI is opened')
 
 
     # Edit function for edit button command
@@ -114,6 +118,8 @@ class GUI(backend.backend):
 
         # Declare Edit_GUI object to show the GUI
         Edit_GUI.GUI(val)
+
+        print('Edit GUI is opened')
 
 
 
@@ -138,6 +144,8 @@ class GUI(backend.backend):
 
         for i in value:
             self.orderBox.insert('', 'end', values=i)
+
+        print("Data successfully taken from database")
 
 
 
