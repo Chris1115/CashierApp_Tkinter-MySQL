@@ -1,3 +1,4 @@
+from turtle import back
 import mysql.connector as mysql
 
 class backend():
@@ -14,7 +15,23 @@ class backend():
         con = mysql.connect(host='localhost', user='root', password='', database='cashier_app')
         cursor = con.cursor()
 
+        before = self.getRowCounts()
         cursor.execute(syntax)
-        cursor.execute("commit")
+        con.commit()
+        after = self.getRowCounts()
 
-        return True
+        if before < after:
+            return True
+        elif before == after:
+            return True
+        elif before > after:
+            return True
+        else:
+            return False
+
+    def getRowCounts(self):
+        con = mysql.connect(host='localhost', user='root', password='', database='cashier_app')
+        cursor = con.cursor()
+
+        cursor.execute("SELECT COUNT(id) FROM product;")
+        return cursor.fetchall()
